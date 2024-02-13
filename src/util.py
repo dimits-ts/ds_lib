@@ -1,3 +1,6 @@
+import os
+
+from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
@@ -58,3 +61,19 @@ def train_test_val_split(df: pd.DataFrame,
                                        random_state=random_state,
                                        stratify=stratify)
     return df_train, df_val, df_test
+
+
+def save_plot(filename: str, dir_name: str = "output") -> None:
+    """
+    Saves a plot to the output directory.
+
+    :param filename: The name of the file for the Figure.
+    :param dir_name: The name of the directory under which the plot will be saved. Defaults to "output".
+    """
+    path = os.path.join(dir_name, filename)
+
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+
+    plt.savefig(path, bbox_inches="tight")
+    print(f"Figured saved to " + path)
