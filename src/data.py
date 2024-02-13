@@ -3,11 +3,11 @@ import datetime
 
 class Post:
     """
-    Represents a forum post, including contents, meta-infromation and relation to other posts in the thread.
+    Represents a forum post, including contents, meta-information and relation to other posts in the thread.
     """
-    
-    def __init__(self, post_id: int, thread_id: int, author: str, contents: str, 
-                 date: datetime.date, reply_to: int=None):
+
+    def __init__(self, post_id: int, thread_id: int, author: str, contents: str,
+                 date: datetime.date, reply_to: int = None):
         """
         :param post_id: (int) The unique identifier for the post.
         :param thread_id : (int) The identifier of the thread to which the post belongs.
@@ -23,23 +23,22 @@ class Post:
         self.contents = contents
         self.date = date
         self.reply_to = reply_to
-        
+
     def __eq__(self, other):
         return self.id == other.id
-    
+
     def __hash__(self):
         return self.id
-            
+
     def __str__(self) -> str:
         return f"Post {self.id} in thread {self.thread_id} by {self.author}, contents: '{self.contents[:50]}'"
-    
-    
+
 
 class Thread:
     """
     Represents a forum thread. Contains meta-information as well as the thread's posts.
     """
-    
+
     def __init__(self, thread_id, title, author):
         """
         Create a new Thread container.
@@ -51,13 +50,13 @@ class Thread:
         self.title = title
         self.author = author
         self.posts = []
-        
+
     def add_post(self, post: Post) -> None:
         """
         Add a post to the Thread.
         :param post: the post to be added
         """
         self.posts.append(post)
-        
+
     def __str__(self) -> str:
         return f"Thread {self.id} by {self.author}, titled: '{self.title}'"
